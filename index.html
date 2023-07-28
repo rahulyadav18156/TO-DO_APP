@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TO DO APP</title>
+<link rel="stylesheet" href="./style1.css">
+</head>
+<body ng-app="toDoApp">
+<div class="container" ng-controller="toDoContr">
+<div class="userInput">
+<h1>TO-DO App</h1>
+<form ng-submit="addTask() ">
+<input type="text" ng-model="taskDesc" name="name" id="name">
+<button type="submit">Add task</button>
+</form>
+</div>
+<div class="detail">
+<p>{{remainingCount()}} out of {{taskList.length}} remaining</p>
+<div class="btn">
+<button ng-click="clearAll()">Clear All</button>
+<button ng-click="clearCompleted()">Clear Completed</button>
+</div>
+</div>
+<div class="list" ng-onInit="gainTask()">
+<ul>
+<li class="task" ng-repeat="task in taskList">
+    <input type="checkbox" name="check" ng-model="task.status"
+id="${{$index}}">
+<label for="${{$index}}"><span id="tick-mark" class="checkmark">
+<strong></strong></span>{{task.text}}</label>
+<div class="cross-btn" ng-click="clearSingle($index)"></div>
+</li>
+</ul>
+</div>
+</div>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
